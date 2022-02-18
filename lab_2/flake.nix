@@ -17,8 +17,8 @@
         {
           devShell = pkgs.mkShell {
             buildInputs = with pkgs; [
-              dart
-              flutter
+              go
+              gofumpt
             ];
           };
         }
