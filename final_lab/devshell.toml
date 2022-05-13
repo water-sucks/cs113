@@ -1,0 +1,67 @@
+[devshell]
+name = "ghetto-drum-hero"
+packages = [ "toilet" ]
+
+[[commands]]
+package = "devshell.cli"
+help = "Per project developer environments"
+
+[[commands]]
+package = "tree"
+help = "Directory listing"
+
+[[commands]]
+category = "language tools"
+package = "go_1_18"
+
+[[commands]]
+category = "language tools"
+package = "arduino-cli"
+
+[[commands]]
+category = "language tools"
+package = "gofumpt"
+
+[[commands]]
+category = "language tools"
+package = "jetbrains.goland"
+
+[[commands]]
+category = "other"
+package = "screen"
+
+[[commands]]
+category = "sketch commands"
+name = "compile"
+command = '''
+echo "Uploading sketch to Arduino..."
+arduino-cli compile --fqbn arduino:avr:mega detector --output-dir ./detector/build
+echo "Compiled Arduino sketch successfully!"
+'''
+
+help = "Compile detector sketch"
+
+[[commands]]
+category = "sketch commands"
+name = "upload"
+command = '''
+echo "Uploading sketch to Arduino..."
+arduino-cli upload -p /dev/ttyACM0 --fqbn arduino:avr:mega --input-dir ./detector/build -v
+echo "Uploaded sketch to Arduino successfully!"
+'''
+help = "Upload detector sketch to Arduino"
+
+[[commands]]
+category = "sketch commands"
+name = "clean"
+command = '''
+echo "Removing Arduino build artifacts..."
+rm -rfv ./detector/build
+'''
+help = "Remove Arduino build artifacts"
+
+[[commands]]
+category = "sketch commands"
+name = "watch"
+command = "screen /dev/ttyACM0 9600"
+help = "Watch Arduino serial port output manually with screen"
